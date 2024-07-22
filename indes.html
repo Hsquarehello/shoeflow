@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shoeflow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .active {
+        color: #da000c;
+      }
+
+      .active-item {
+        width: 45px !important;
+        background-color: #da000b !important;
+      }
+
+      nav ul li {
+        transition: all 0.3s ease-in-out;
+      }
+      nav ul li::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background-color: #da000c;
+        left: 0;
+        bottom: -5px;
+        transition: all 0.3s ease-in-out;
+      }
+
+      nav ul li:hover::after {
+        width: 100%;
+      }
+      .dropdown:hover svg {
+        transform: rotate(-180deg);
+      }
+      .sale {
+        clip-path: polygon(40% 20%, 100% 20%, 100% 80%, 40% 80%, 10% 50%);
+        background-color: #da000b;
+        font-size: 12px;
+        padding: 8px 14px 8px 20px;
+        border-top-right-radius: 18px;
+        border-bottom-right-radius: 18px;
+        text-align: center;
+      }
+
+      .bounce {
+        animation: bounce 1s infinite;
+      }
+
+      .primary-btn::before {
+        content: "";
+        position: absolute;
+        width: 150%;
+        height: 100%;
+        background-color: #fff;
+        border-radius: 18px;
+        left: -50px;
+        top: 0;
+        transition: all 0.3s linear;
+      }
+
+      .primary-btn:hover::before {
+        transform: translateX(100%);
+      }
+
+      .primary-btn:hover p:first-child {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+
+      .primary-btn:hover p:last-child {
+        transform: translateY(-20px);
+        opacity: 1;
+      }
+
+      .logo-container {
+        transform: translateX(-35%);
+        animation: slide 20s linear infinite;
+      }
+
+      .logo {
+        filter: invert();
+      }
+
+      .slideup {
+        animation: slideup 3s ease 2s infinite;
+      }
+
+      @keyframes slideup {
+        from {
+        }
+      }
+
+      @keyframes slide {
+        from {
+          transform: translateX(-35%);
+        }
+        to {
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateX(-8%);
+          animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+        }
+        50% {
+          transform: translateX(0);
+          animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-[#0E0E0E]">
+    <header
+      class="text-white flex justify-between items-center py-[20px] px-[15px]">
+      <!-- Logo -->
+      <div>
+        <img
+          class="w-[185px]"
+          src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1113/6637c824ebd359d735eaa138_Logo%20(1).webp"
+          alt="" />
+      </div>
+      <!-- search -->
+      <div
+        class="bg-white flex justify-between p-[5px] rounded-md w-[45%] text-[16px] font-semibold md:flex hidden">
+        <input
+          type="text"
+          placeholder="What are you looing for?"
+          class="border-none outline-none placeholder:text-[14px] placeholder:text-black placeholder:font-semibold ps-[30px] text-black" />
+        <div
+          class="bg-[#0E0E0E] py-[8px] px-[12px] rounded-md cursor-pointer hover:bg-[#DA000B] duration-300">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24">
+            <path
+              fill="currentColor"
+              d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Help -->
+      <div class="flex gap-[30px] items-center">
+        <div class="hidden items-center gap-[10px] lg:flex">
+          <!-- customer service icon -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="58"
+            height="58"
+            viewBox="0 0 24 24">
+            <path
+              fill="currentColor"
+              d="M21 8a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-1.062A8 8 0 0 1 12 23v-2a6 6 0 0 0 6-6V9A6 6 0 0 0 6 9v7H3a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h1.062a8.001 8.001 0 0 1 15.876 0zM7.76 15.785l1.06-1.696A5.97 5.97 0 0 0 12 15a5.97 5.97 0 0 0 3.18-.911l1.06 1.696A7.96 7.96 0 0 1 12 17a7.96 7.96 0 0 1-4.24-1.215" />
+          </svg>
+          <div>
+            <h3 class="text-[16px] font-bold">NEED HELP?</h3>
+            <p class="text-[14px] font-bold">0123-456-789</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-[10px]">
+          <!-- user icon -->
+          <svg
+            class="cursor-pointer"
+            xmlns="http://www.w3.org/2000/svg"
+            width="35"
+            height="35"
+            viewBox="0 0 24 24">
+            <path
+              fill="currentColor"
+              d="M12 12q-1.65 0-2.825-1.175T8 8t1.175-2.825T12 4t2.825 1.175T16 8t-1.175 2.825T12 12m-8 8v-2.8q0-.85.438-1.562T5.6 14.55q1.55-.775 3.15-1.162T12 13t3.25.388t3.15 1.162q.725.375 1.163 1.088T20 17.2V20zm2-2h12v-.8q0-.275-.137-.5t-.363-.35q-1.35-.675-2.725-1.012T12 15t-2.775.338T6.5 16.35q-.225.125-.363.35T6 17.2zm6-8q.825 0 1.413-.587T14 8t-.587-1.412T12 6t-1.412.588T10 8t.588 1.413T12 10m0 8" />
+          </svg>
+          <!-- bag icon -->
+          <div class="relative">
+            <svg
+              class="cursor-pointer"
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              viewBox="0 0 256 256">
+              <path
+                fill="currentColor"
+                d="M216 40H40a16 16 0 0 0-16 16v144a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V56a16 16 0 0 0-16-16m0 160H40V56h176zM176 88a48 48 0 0 1-96 0a8 8 0 0 1 16 0a32 32 0 0 0 64 0a8 8 0 0 1 16 0" />
+            </svg>
+            <p
+              class="absolute bg-[#DA000A] text-[14px] font-bold left-[100%] bottom-[100%] translate-x-[-70%] translate-y-[80%] px-[6px] rounded-[999px]">
+              0
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Nav link -->
+    <nav
+      class="flex text-white items-center justify-center text-[16px] font-semibold border-y-[1px] border-[#303030] px-[15px] md:py-[10px] bg-[#0E0E0E] sticky top-[0] z-10">
+      <div
+        class="flex gap-[25px] items-center lg:justify-center justify-between w-full">
+        <!-- nav link -->
+        <ul class="lg:flex gap-[25px] items-center hidden">
+          <li class="active hover:text-[#DA000C] relative">
+            <a href="#">Home</a>
+          </li>
+          <li class="hover:text-[#DA000C] relative">
+            <a href="#">About Us</a>
+          </li>
+          <li class="hover:text-[#DA000C] relative"><a href="#">Blog</a></li>
+          <li class="hover:text-[#DA000C] relative"><a href="#">Faq</a></li>
+          <li class="hover:text-[#DA000C] relative"><a href="#">Contact</a></li>
+        </ul>
+        <!-- dropdown -->
+        <div
+          class="cursor-pointer hover:text-[#DA000B] duration-300 hidden items-start dropdown lg:flex">
+          <span>Pages</span>
+          <svg
+            class="duration-300 ease-in-out"
+            xmlns="http://www.w3.org/2000/svg"
+            width="23"
+            height="23"
+            viewBox="0 0 24 24">
+            <path
+              fill="currentColor"
+              d="m12 15.4l-6-6L7.4 8l4.6 4.6L16.6 8L18 9.4z" />
+          </svg>
+        </div>
+        <!-- Sale -->
+        <div class="flex relative items-center gap-[5px]">
+          <span class="cursor-pointer hover:text-[#DA000B] duration-300"
+            >Ongoing Offers</span
+          >
+          <div class="sale bounce">Sale</div>
+        </div>
+        <!-- mobile menu -->
+        <div class="lg:hidden">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="55"
+            height="55"
+            viewBox="0 0 24 24">
+            <path
+              fill="currentColor"
+              d="M3 18h18v-2H3zm0-5h18v-2H3zm0-7v2h18V6z" />
+          </svg>
+        </div>
+      </div>
+    </nav>
+    <!-- Hero Section -->
+    <section
+      class="text-white py-[150px] px-[15px] flex flex-col lg:flex-row h-[auto] items-center gap-[30px] lg:h-[110vh] relative">
+      <div class="flex flex-col items-start gap-[30px] lg:w-[50%]">
+        <h1
+          class="lg:text-5xl text-4xl font-bold lg:leading-relaxed leading-normal">
+          Step into Greateness with Shoeflow- Your Path to Style
+        </h1>
+        <p class="text-3xl lg:text-4xl font-bold text-[#DA000B]">Luxe Vista</p>
+        <button
+          class="py-[10px] px-[35px] text-[#DA000B] rounded-md text-[14px] font-semibold hover:border-[1px] flex flex-col hover:border-[#fff] h-[45px] duration-300 overflow-hidden primary-btn relative">
+          <p class="relative z-10 duration-300">View Products</p>
+          <p class="relative z-10 duration-300 text-white opacity-0">
+            View Products
+          </p>
+        </button>
+      </div>
+      <div class="sm:w-[80%] lg:w-[45%]">
+        <img
+          src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1148/6634bbc648edc5761340b221_freepik-export-20240501191405U746-p-800.webp"
+          alt="" />
+      </div>
+
+      <div
+        class="flex gap-[5px] absolute left-[50%] translate-x-[-50%] lg:bottom-[13%] sm:bottom-[4%] bottom-[0] justify-center">
+        <div
+          class="bg-white w-[15px] h-[15px] rounded-full active-item cursor-pointer duration-300"></div>
+        <div
+          class="bg-white w-[15px] h-[15px] rounded-full cursor-pointer duration-300"></div>
+        <div
+          class="bg-white w-[15px] h-[15px] rounded-full cursor-pointer duration-300"></div>
+        <div
+          class="bg-white w-[15px] h-[15px] rounded-full cursor-pointer duration-300"></div>
+      </div>
+    </section>
+    <!-- Brand logo -->
+    <section class="py-[30px]">
+      <div class="w-full overflow-hidden">
+        <div class="flex gap-[100px] max-w-[1500px] logo-container h-[40px]">
+          <img
+            class="logo"
+            src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1113/66435137a524a5ecda258a2a_customers_8.svg"
+            alt="" />
+          <img
+            class="logo"
+            src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1113/66435138a524a5ecda258aa9_customers_4.svg"
+            alt="" />
+          <img
+            class="logo"
+            src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1113/66435137a524a5ecda258a2f_customers_2.svg"
+            alt="" />
+          <img
+            class="logo"
+            src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1113/66435137a524a5ecda258a3b_customers_6.svg"
+            alt="" />
+          <img
+            class="logo"
+            src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1113/66435137a524a5ecda258a2a_customers_8.svg"
+            alt="" />
+          <img
+            class="logo"
+            src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1113/66435138a524a5ecda258aa9_customers_4.svg"
+            alt="" />
+          <img
+            class="logo"
+            src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1113/66435137a524a5ecda258a2f_customers_2.svg"
+            alt="" />
+          <img
+            class="logo"
+            src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1113/66435137a524a5ecda258a3b_customers_6.svg"
+            alt="" />
+        </div>
+      </div>
+    </section>
+    <!-- Top products -->
+    <section class="text-white">
+      <div
+        class="flex py-[30px] border-y-[2px] gap-[10px] text-4xl font-bold items-center">
+        <h1>Our Top</h1>
+        <div class="text-[#DA000B]">Products</div>
+      </div>
+      <!-- Products container -->
+      <div class="py-[40px] grid grid-cols-3 grid-rows-2 gap-[20px] h-[auto]">
+        <article class="rounded-lg overflow-hidden relative hover:border-[2px] row-start-1 row-end-3">
+          <div class="w-full">
+            <img
+              src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1113/66362bd482e98a1800962b4d_irene-kredenets-KStSiM1UvPw-unsplash-p-500.jpg"
+              alt="" />
+          </div>
+          <div class="absolute bottom-0 left-0">
+            <h2>Summit Sneakers</h2>
+            <p>Hottest Deals Of The Month</p>
+          </div>
+        </article>
+        <article class="rounded-lg overflow-hidden relative hover:border-[2px]">
+          <div class="w-full absolute overflow-hidden">
+            <img
+            class="w-[200%]"
+              src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1113/66362bd482e98a1800962be2_zachary-keimig-o_U0kPh7uu0-unsplash-p-500.jpg"
+              alt="" />
+          </div>
+          <div class="absolute bottom-0 left-0">
+            <h2>Summit Sneakers</h2>
+            <p>Hottest Deals Of The Month</p>
+          </div>
+        </article>
+        <article class="rounded-lg overflow-hidden relative hover:border-[2px] row-start-2 row-end-3">
+          <div class="w-full">
+            <img
+              src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1113/66362bd582e98a1800962c48_23442.webp"
+              alt="" />
+          </div>
+          <div class="absolute bottom-0 left-0">
+            <h2>Summit Sneakers</h2>
+            <p>Hottest Deals Of The Month</p>
+          </div>
+        </article>
+        <article class="rounded-lg overflow-hidden relative hover:border-[2px]">
+          <div class="w-full">
+            <img
+              src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1113/66362bd482e98a1800962bb6_mojtaba-fahiminia-t4g1gctAaKk-unsplash-p-500.jpg"
+              alt="" />
+          </div>
+          <div class="absolute bottom-0 left-0">
+            <h2>Summit Sneakers</h2>
+            <p>Hottest Deals Of The Month</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </body>
+</html>
