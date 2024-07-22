@@ -6,6 +6,9 @@
     <title>Shoeflow</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+      * {
+        box-sizing: border-box;
+      }
       .active {
         color: #da000c;
       }
@@ -86,6 +89,31 @@
 
       .slideup {
         animation: slideup 3s ease 2s infinite;
+      }
+
+      .overlay {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        opacity: 0.7;
+        width: 100%;
+        height: 30%;
+        z-index: 999;
+        background: linear-gradient(to bottom, transparent, black);
+        transition: all 0.3s ease;
+      }
+
+      article:hover .overlay {
+        opacity: 0.7;
+        height: 110%;
+      }
+
+      article:hover img {
+        transform: scale(1.2);
+      }
+
+      article > div:last-child {
+        z-index: 1000;
       }
 
       @keyframes slideup {
@@ -325,59 +353,79 @@
       </div>
     </section>
     <!-- Top products -->
-    <section class="text-white">
+    <section class="text-white px-[30px]">
       <div
         class="flex py-[30px] border-y-[2px] gap-[10px] text-4xl font-bold items-center">
         <h1>Our Top</h1>
         <div class="text-[#DA000B]">Products</div>
       </div>
       <!-- Products container -->
-      <div class="py-[40px] grid grid-cols-3 grid-rows-2 gap-[20px] h-[auto]">
-        <article class="rounded-lg overflow-hidden relative hover:border-[2px] row-start-1 row-end-3">
-          <div class="w-full">
+      <div class="py-[40px] grid grid-cols-3 grid-rows-2 gap-[20px] h-[100vh]">
+        <article
+          class="rounded-2xl overflow-hidden relative duration-300 hover:border-[2px] row-start-1 row-end-3 cursor-pointer">
+          <div class="overlay"></div>
+          <div class="w-full h-full">
             <img
+              class="h-full duration-300"
               src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1113/66362bd482e98a1800962b4d_irene-kredenets-KStSiM1UvPw-unsplash-p-500.jpg"
               alt="" />
           </div>
-          <div class="absolute bottom-0 left-0">
-            <h2>Summit Sneakers</h2>
-            <p>Hottest Deals Of The Month</p>
+          <div class="absolute bottom-[10px] left-[10px]">
+            <h2 class="text-[20px] font-bold">Summit Sneakers</h2>
+            <p class="text-[16px] font-semibold">Hottest Deals Of The Month</p>
           </div>
         </article>
-        <article class="rounded-lg overflow-hidden relative hover:border-[2px]">
+        <article
+          class="rounded-2xl overflow-hidden relative hover:border-[2px] duration-300 cursor-pointer">
+          <div class="overlay"></div>
           <div class="w-full absolute overflow-hidden">
             <img
-            class="w-[200%]"
+              class="duration-300"
               src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1113/66362bd482e98a1800962be2_zachary-keimig-o_U0kPh7uu0-unsplash-p-500.jpg"
               alt="" />
           </div>
-          <div class="absolute bottom-0 left-0">
-            <h2>Summit Sneakers</h2>
-            <p>Hottest Deals Of The Month</p>
+          <div class="absolute bottom-[10px] left-[10px]">
+            <h2 class="text-[20px] font-bold">TurboTrainers</h2>
+            <p class="text-[16px] font-semibold">Grab The Latest Shoes</p>
           </div>
         </article>
-        <article class="rounded-lg overflow-hidden relative hover:border-[2px] row-start-2 row-end-3">
+        <article
+          class="rounded-2xl overflow-hidden relative hover:border-[2px] row-start-2 row-end-3 duration-300 cursor-pointer">
+          <div class="overlay"></div>
           <div class="w-full">
             <img
+              class="duration-300"
               src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1113/66362bd582e98a1800962c48_23442.webp"
               alt="" />
           </div>
-          <div class="absolute bottom-0 left-0">
-            <h2>Summit Sneakers</h2>
-            <p>Hottest Deals Of The Month</p>
+          <div class="absolute bottom-[10px] left-[10px]">
+            <h2 class="text-[20px] font-bold">Dapper Derby Elegance</h2>
+            <p class="text-[16px] font-semibold">400+ Products Available</p>
           </div>
         </article>
-        <article class="rounded-lg overflow-hidden relative hover:border-[2px]">
+        <article
+          class="rounded-2xl overflow-hidden relative hover:border-[2px] row-start-1 row-end-3 duration-300 cursor-pointer">
+          <div class="overlay"></div>
           <div class="w-full">
             <img
+              class="duration-300"
               src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1113/66362bd482e98a1800962bb6_mojtaba-fahiminia-t4g1gctAaKk-unsplash-p-500.jpg"
               alt="" />
           </div>
-          <div class="absolute bottom-0 left-0">
-            <h2>Summit Sneakers</h2>
-            <p>Hottest Deals Of The Month</p>
+          <div class="absolute bottom-[10px] left-[10px]">
+            <h2 class="text-[20px] font-bold">Refined Oxford Classics</h2>
+            <p class="text-[16px] font-semibold">Import From USA</p>
           </div>
         </article>
+      </div>
+    </section>
+
+    <!-- Latest Products -->
+    <section class="text-white px-[30px]">
+      <div
+        class="flex py-[30px] border-y-[2px] gap-[10px] text-3xl font-bold items-center">
+        <h1>Latest</h1>
+        <div class="text-[#DA000B]">Products</div>
       </div>
     </section>
   </body>
