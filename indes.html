@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shoeflow</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://kit.fontawesome.com/4062985967.js"
+      crossorigin="anonymous"></script>
     <style>
       * {
         box-sizing: border-box;
@@ -108,12 +111,101 @@
         height: 110%;
       }
 
-      article:hover img {
+      #top-products article:hover img {
         transform: scale(1.2);
       }
 
-      article > div:last-child {
+      #top-products article > div:last-child {
         z-index: 1000;
+      }
+
+      .left-overlay,
+      .right-overlay {
+        background: linear-gradient(to right, #0e0e0e, transparent);
+        width: 150px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        z-index: 10;
+      }
+
+      .right-overlay {
+        background: linear-gradient(to left, #0e0e0e, transparent);
+        right: 0;
+      }
+
+      .top-head::before,
+      .top-head::after {
+        content: "";
+        width: 0;
+        height: 2px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: white;
+        animation: increase 3s linear forwards;
+      }
+
+      .top-head::after {
+        top: 100%;
+        animation-delay: 0.3s;
+      }
+
+      .latest-overlay {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .latest-overlay img {
+        scale: 1.25;
+        transition: all 0.3s ease;
+      }
+
+      #latest article:hover .latest-overlay {
+        opacity: 1;
+      }
+
+      #latest article:hover .latest-overlay img {
+        scale: 1.1;
+      }
+
+      #latest article:hover .btn-group {
+        opacity: 1;
+        transform: translate(-50%, -10px);
+      }
+
+      #latest article .btn-group button {
+        transition: all 0.3s ease-in-out;
+      }
+
+      #latest article .btn-group button:first-child:hover {
+        background-color: transparent !important;
+        color: #da000b;
+        border: 1px solid #da000b;
+        backdrop-filter: blur(1px) !important;
+      }
+
+      #latest article .btn-group button:last-child:hover {
+        background-color: #000;
+        color: white;
+      }
+
+      @keyframes increase {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
       }
 
       @keyframes slideup {
@@ -227,7 +319,7 @@
     </header>
     <!-- Nav link -->
     <nav
-      class="flex text-white items-center justify-center text-[16px] font-semibold border-y-[1px] border-[#303030] px-[15px] md:py-[10px] bg-[#0E0E0E] sticky top-[0] z-10">
+      class="flex text-white items-center justify-center text-[16px] font-semibold border-y-[1px] border-[#303030] px-[15px] md:py-[10px] bg-[#0E0E0E] sticky top-[0] z-[9999]">
       <div
         class="flex gap-[25px] items-center lg:justify-center justify-between w-full">
         <!-- nav link -->
@@ -315,7 +407,9 @@
     </section>
     <!-- Brand logo -->
     <section class="py-[30px]">
-      <div class="w-full overflow-hidden">
+      <div class="w-full overflow-hidden relative">
+        <div class="left-overlay"></div>
+        <div class="right-overlay"></div>
         <div class="flex gap-[100px] max-w-[1500px] logo-container h-[40px]">
           <img
             class="logo"
@@ -353,16 +447,17 @@
       </div>
     </section>
     <!-- Top products -->
-    <section class="text-white px-[30px]">
+    <section id="top-products" class="text-white px-[15px] md:px-[30px]">
       <div
-        class="flex py-[30px] border-y-[2px] gap-[10px] text-4xl font-bold items-center">
+        class="top-head relative flex py-[30px] gap-[10px] text-3xl md:text-4xl font-bold items-center">
         <h1>Our Top</h1>
         <div class="text-[#DA000B]">Products</div>
       </div>
       <!-- Products container -->
-      <div class="py-[40px] grid grid-cols-3 grid-rows-2 gap-[20px] h-[100vh]">
+      <div
+        class="py-[40px] grid grid-col-1 md:grid-cols-3 md:grid-rows-2 gap-[20px] h-[auto] lg:h-[100vh] md:h-[75vh]">
         <article
-          class="rounded-2xl overflow-hidden relative duration-300 hover:border-[2px] row-start-1 row-end-3 cursor-pointer">
+          class="rounded-2xl overflow-hidden relative duration-300 hover:border-[2px] md:row-start-1 md:row-end-3 cursor-pointer">
           <div class="overlay"></div>
           <div class="w-full h-full">
             <img
@@ -378,7 +473,7 @@
         <article
           class="rounded-2xl overflow-hidden relative hover:border-[2px] duration-300 cursor-pointer">
           <div class="overlay"></div>
-          <div class="w-full absolute overflow-hidden">
+          <div class="w-full overflow-hidden">
             <img
               class="duration-300"
               src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1113/66362bd482e98a1800962be2_zachary-keimig-o_U0kPh7uu0-unsplash-p-500.jpg"
@@ -390,7 +485,7 @@
           </div>
         </article>
         <article
-          class="rounded-2xl overflow-hidden relative hover:border-[2px] row-start-2 row-end-3 duration-300 cursor-pointer">
+          class="rounded-2xl overflow-hidden relative hover:border-[2px] md:row-start-2 md:row-end-3 duration-300 cursor-pointer">
           <div class="overlay"></div>
           <div class="w-full">
             <img
@@ -404,7 +499,7 @@
           </div>
         </article>
         <article
-          class="rounded-2xl overflow-hidden relative hover:border-[2px] row-start-1 row-end-3 duration-300 cursor-pointer">
+          class="rounded-2xl overflow-hidden relative hover:border-[2px] md:row-start-1 md:row-end-3 duration-300 cursor-pointer">
           <div class="overlay"></div>
           <div class="w-full">
             <img
@@ -421,12 +516,246 @@
     </section>
 
     <!-- Latest Products -->
-    <section class="text-white px-[30px]">
+    <section id="latest" class="text-white px-[15px] md:px-[30px]">
       <div
-        class="flex py-[30px] border-y-[2px] gap-[10px] text-3xl font-bold items-center">
+        class="top-head relative flex py-[30px] gap-[10px] text-3xl font-bold items-center">
         <h1>Latest</h1>
         <div class="text-[#DA000B]">Products</div>
       </div>
+      <!-- Product Container -->
+      <div
+        class="grid grid-col-1 lg:grid-cols-2 gap-[30px] h-[auto] lg:h-[130vh] py-[30px]">
+        <article
+          class="flex flex-col items-start justify-between rounded-2xl gap-[10px] p-[15px] cursor-pointer relative overflow-hidden hover:bg-[white] hover:text-black">
+          <!-- overlay -->
+          <div class="latest-overlay items-start md:items-center">
+            <img
+              src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1148/66357106ee508571ec3a7b49_975.webp"
+              alt="" />
+            <div
+              class="absolute z-10 bottom-[30px] left-[50%] translate-x-[-50%] flex gap-[10px] btn-group duration-300 translate-y-[20px] hidden md:block">
+              <button
+                class="py-[10px] px-[15px] bg-[#DA000B] text-[14px] font-semibold rounded-md text-white">
+                Add To Card
+              </button>
+              <button
+                class="py-[10px] px-[15px] bg-[#fff] text-black text-[14px] font-semibold rounded-md">
+                View Details
+              </button>
+            </div>
+          </div>
+          <button
+            class="py-[5px] px-[10px] bg-[#DA000B] text-[12px] font-semibold rounded-md relative z-10 text-white">
+            On Sale
+          </button>
+          <div class="flex flex-col md:flex-row gap-[30px] items-start">
+            <div class="p-[10px] w-[95%] md:w-[60%] lg:w-[55%]">
+              <img
+                src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1148/6635ffaf0edfd934c9d9a69f_9402.webp"
+                alt="" />
+            </div>
+            <div class="flex flex-col gap-[15px]">
+              <p class="text-[22px] lg:text-[20px] font-semibold">Fast Pace</p>
+              <div class="text-[#da000b] text-[16px] lg:text-[14px]">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <div
+                class="flex flex-col md:flex-row lg:flex-col gap-[10px] items-start md:items-center lg:items-start">
+                <p
+                  class="text-[20px] lg:text-[18px] font-semibold text-[#DA000B]">
+                  $ 400.00 USD
+                </p>
+                <p class="text-[16px] line-through font-semibold">
+                  $ 450.00 USD
+                </p>
+              </div>
+              <p class="text-[18px] lg:text-[16px] font-semibold">
+                SKU: <span class="text-[16px] lg:text-[14px]">NXDSOF231</span>
+              </p>
+              <p class="text-[18px] font-semibold flex items-center gap-[10px]">
+                STOCK: <span class="text-[16px] text-[#da000b]">AVAILABLE</span>
+              </p>
+            </div>
+          </div>
+        </article>
+        <article
+          class="flex flex-col items-start justify-between rounded-2xl gap-[10px] p-[15px] cursor-pointer relative overflow-hidden hover:bg-[white] hover:text-black">
+          <!-- overlay -->
+          <div class="latest-overlay items-start md:items-center">
+            <img
+              src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1148/663600c44aa0a1b6c1b3afbe_64267.webp"
+              alt="" />
+            <div
+              class="absolute z-10 bottom-[30px] left-[50%] translate-x-[-50%] flex gap-[10px] btn-group duration-300 translate-y-[20px] hidden md:block">
+              <button
+                class="text-white py-[10px] px-[15px] bg-[#DA000B] text-[14px] font-semibold rounded-md">
+                Add To Card
+              </button>
+              <button
+                class="py-[10px] px-[15px] bg-[#fff] text-black text-[14px] font-semibold rounded-md">
+                View Details
+              </button>
+            </div>
+          </div>
+          <button
+            class="py-[5px] px-[10px] bg-[#DA000B] text-[12px] font-semibold rounded-md relative z-10 text-white">
+            On Sale
+          </button>
+          <div class="flex flex-col md:flex-row gap-[30px] items-start">
+            <div class="p-[10px] w-[95%] md:w-[60%] lg:w-[55%]">
+              <img
+                src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1148/663600bf060bedceb569c450_64267.webp"
+                alt="" />
+            </div>
+            <div class="flex flex-col gap-[15px]">
+              <p class="text-[22px] lg:text-[20px] font-semibold">Fast Pace</p>
+              <div class="text-[#da000b] text-[16px] lg:text-[14px]">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <div
+                class="flex flex-col md:flex-row lg:flex-col gap-[10px] items-start md:items-center lg:items-start">
+                <p
+                  class="text-[20px] lg:text-[18px] font-semibold text-[#DA000B]">
+                  $ 400.00 USD
+                </p>
+                <p class="text-[16px] line-through font-semibold">
+                  $ 450.00 USD
+                </p>
+              </div>
+              <p class="text-[18px] lg:text-[16px] font-semibold">
+                SKU: <span class="text-[16px] lg:text-[14px]">NXDSOF231</span>
+              </p>
+              <p class="text-[18px] font-semibold flex items-center gap-[10px]">
+                STOCK: <span class="text-[16px] text-[#da000b]">AVAILABLE</span>
+              </p>
+            </div>
+          </div>
+        </article>
+        <article
+          class="flex flex-col items-start justify-between rounded-2xl gap-[10px] p-[15px] cursor-pointer relative overflow-hidden hover:bg-[white] hover:text-black">
+          <!-- overlay -->
+          <div class="latest-overlay items-start md:items-center">
+            <img
+              src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1148/6632a235dd7bdbff81661e4e_freepik-export-20240501191226MRll.webp"
+              alt="" />
+            <div
+              class="absolute z-10 bottom-[30px] left-[50%] translate-x-[-50%] flex gap-[10px] btn-group duration-300 translate-y-[20px] hidden md:block">
+              <button
+                class="text-white py-[10px] px-[15px] bg-[#DA000B] text-[14px] font-semibold rounded-md">
+                Add To Card
+              </button>
+              <button
+                class="py-[10px] px-[15px] bg-[#fff] text-black text-[14px] font-semibold rounded-md">
+                View Details
+              </button>
+            </div>
+          </div>
+          <button
+            class="py-[5px] px-[10px] bg-[#DA000B] text-[12px] font-semibold rounded-md relative z-10 text-white">
+            On Sale
+          </button>
+          <div class="flex flex-col md:flex-row gap-[30px] items-start">
+            <div class="p-[10px] w-[95%] md:w-[60%] lg:w-[55%]">
+              <img
+                src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1148/6632a227b47b00ab61467c0b_freepik-export-20240501191347Awot.webp"
+                alt="" />
+            </div>
+            <div class="flex flex-col gap-[15px]">
+              <p class="text-[22px] lg:text-[20px] font-semibold">Fast Pace</p>
+              <div class="text-[#da000b] text-[16px] lg:text-[14px]">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <div
+                class="flex flex-col md:flex-row lg:flex-col gap-[10px] items-start md:items-center lg:items-start">
+                <p
+                  class="text-[20px] lg:text-[18px] font-semibold text-[#DA000B]">
+                  $ 400.00 USD
+                </p>
+                <p class="text-[16px] line-through font-semibold">
+                  $ 450.00 USD
+                </p>
+              </div>
+              <p class="text-[18px] lg:text-[16px] font-semibold">
+                SKU: <span class="text-[16px] lg:text-[14px]">NXDSOF231</span>
+              </p>
+              <p class="text-[18px] font-semibold flex items-center gap-[10px]">
+                STOCK: <span class="text-[16px] text-[#da000b]">AVAILABLE</span>
+              </p>
+            </div>
+          </div>
+        </article>
+        <article
+          class="flex flex-col items-start justify-between rounded-2xl gap-[10px] p-[15px] cursor-pointer relative overflow-hidden hover:bg-[white] hover:text-black">
+          <!-- overlay -->
+          <div class="latest-overlay items-start md:items-center">
+            <img
+              src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1148/6634b4c28be48e31b2b734ef_2979.jpg"
+              alt="" />
+            <div
+              class="absolute z-10 bottom-[30px] left-[50%] translate-x-[-50%] flex gap-[10px] btn-group duration-300 translate-y-[20px] hidden md:block">
+              <button
+                class="text-white py-[10px] px-[15px] bg-[#DA000B] text-[14px] font-semibold rounded-md">
+                Add To Card
+              </button>
+              <button
+                class="py-[10px] px-[15px] bg-[#fff] text-black text-[14px] font-semibold rounded-md">
+                View Details
+              </button>
+            </div>
+          </div>
+          <button
+            class="py-[5px] px-[10px] bg-[#DA000B] text-[12px] font-semibold rounded-md relative z-10 text-white">
+            On Sale
+          </button>
+          <div class="flex flex-col md:flex-row gap-[30px] items-start">
+            <div class="p-[10px] w-[95%] md:w-[60%] lg:w-[55%]">
+              <img
+                src="https://cdn.prod.website-files.com/66312dcf103b5edc9ccc1148/6635f3771705b50016352f8c_2979.webp"
+                alt="" />
+            </div>
+            <div class="flex flex-col gap-[15px]">
+              <p class="text-[22px] lg:text-[20px] font-semibold">Fast Pace</p>
+              <div class="text-[#da000b] text-[16px] lg:text-[14px]">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <div
+                class="flex flex-col md:flex-row lg:flex-col gap-[10px] items-start md:items-center lg:items-start">
+                <p
+                  class="text-[20px] lg:text-[18px] font-semibold text-[#DA000B]">
+                  $ 400.00 USD
+                </p>
+                <p class="text-[16px] line-through font-semibold">
+                  $ 450.00 USD
+                </p>
+              </div>
+              <p class="text-[18px] lg:text-[16px] font-semibold">
+                SKU: <span class="text-[16px] lg:text-[14px]">NXDSOF231</span>
+              </p>
+              <p class="text-[18px] font-semibold flex items-center gap-[10px]">
+                STOCK: <span class="text-[16px] text-[#da000b]">AVAILABLE</span>
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
     </section>
+
+    
   </body>
 </html>
